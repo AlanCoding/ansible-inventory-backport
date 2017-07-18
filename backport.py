@@ -75,7 +75,7 @@ class InventoryCLI(CLI):
             inventory_opts=True,
             vault_opts=True
         )
-        self.parser.add_option("--local", action="store_true", default=False, dest='local',
+        self.parser.add_option("--optimize", action="store_true", default=False, dest='optimize',
                                help='Output variables on the group or host where they are defined')
 
         # Actions
@@ -317,7 +317,7 @@ if __name__ == '__main__':
     import sys
     sys.argv[0] = 'ansible-inventory'
     if ansible_CLI:
-        sys.argv.append('--local')
+        sys.argv.append('--optimize')
         run = ansible_CLI(sys.argv)
         run.parse()
         run.run()
