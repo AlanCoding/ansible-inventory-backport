@@ -4,14 +4,12 @@ python:
   - "2.7"
 
 env:
-  - ANSIBLE_VERSION=2.2.0.0
-  - ANSIBLE_VERSION=2.3.0.0
+  - ANSIBLE_VERSION=2.2
+  - ANSIBLE_VERSION=2.3
 
 install:
-  - pip install flake8
   - pip install pytest
   - pip install -q ansible==$ANSIBLE_VERSION
 
 script:
   - pytest tests/
-  - flake8
