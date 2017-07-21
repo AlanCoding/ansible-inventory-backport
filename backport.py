@@ -92,7 +92,14 @@ class InventoryCLI(CLI):
         self.parser.add_option("--vars", action="store_true", default=False, dest='show_vars',
                                 help='Add vars to graph display, ignored unless used with --graph')
 
-        super(InventoryCLI, self).parse()
+        try:
+            super(InventoryCLI, self).parse()
+        except Exception as e:
+            if 'Need to implement!' not in e.args[0]:
+                raise
+            # --- Start of 2.3+ super(InventoryCLI, self).parse() ---
+            self.options, self.args = self.parser.parse_args(self.args[1:])
+            # --- End of 2.3+ super(InventoryCLI, self).parse() ---
 
         display.verbosity = self.options.verbosity
 
